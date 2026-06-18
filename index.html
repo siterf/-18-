@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html class="dark" lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+    <title>Крокодил 18+ — Premium Party Game</title>
+    
+    <!-- SEO & Mobile App Optimization -->
+    <meta name="description" content="Премиальная салонная игра для компании Крокодил 18+. Эстетика Apple & Dribbble в благородных черно-красных тонах." />
+    <meta name="theme-color" content="#000000" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    
+    <!-- Tailwind and Google Fonts / Icons -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        background: "#000000",
+                        crimson: {
+                            500: "#FF2B3C",
+                            600: "#E30B22",
+                            700: "#B80015",
+                            950: "#1A0205"
+                        },
+                        obsidian: {
+                            800: "#1C1C1E",
+                            900: "#0F0F12",
+                            950: "#050507"
+                        },
+                        glass: {
+                            light: "rgba(255, 255, 255, 0.05)",
+                            dark: "rgba(10, 10, 12, 0.55)",
+                            border: "rgba(255, 255, 255, 0.08)"
+                        }
+                    },
+                    fontFamily: {
+                        sans: ["Plus Jakarta Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        body {
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Desktop view centering a phone frame */
+        @media (min-width: 640px) {
+            body {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100dvh;
+            }
+            .phone-frame {
+                width: 393px;
+                height: 852px;
+                border-radius: 54px;
+                border: 12px solid #18181b;
+                outline: 2px solid #27272a;
+                background-color: #000000;
+                box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.95), 0 0 80px rgba(255, 43, 60, 0.06);
+                position: relative;
+            }
+            .phone-frame::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border-radius: 42px;
+                box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.15);
+                pointer-events: none;
+                z-index: 100;
+            }
+        }
+        
+        @media (max-width: 639px) {
+            .phone-frame {
+                width: 100%;
+                min-height: 100dvh;
+                height: 100%;
+            }
+        }
+
+        /* High-fidelity glassmorphism card */
+        .premium-glass-card {
+            background: linear-gradient(135deg, rgba(15, 15, 18, 0.5) 0%, rgba(5, 5, 7, 0.8) 100%);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.06), 0 20px 45px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Red glow version of the card when active */
+        .premium-glass-card-accent {
+            background: linear-gradient(135deg, rgba(255, 43, 60, 0.06) 0%, rgba(10, 10, 13, 0.7) 100%);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid rgba(255, 43, 60, 0.18);
+            box-shadow: inset 0 1px 2px rgba(255, 43, 60, 0.15), 0 20px 50px rgba(255, 43, 60, 0.05);
+        }
+
+        /* Micro interactions for buttons */
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            color: rgba(255, 255, 255, 0.85);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+        .glass-btn:active {
+            transform: translateY(1px) scale(0.97);
+        }
+
+        .crimson-btn {
+            background: linear-gradient(135deg, #ff2b3c 0%, #d60017 100%);
+            box-shadow: 0 12px 30px -5px rgba(255, 43, 60, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .crimson-btn:hover {
+            background: linear-gradient(135deg, #ff4756 0%, #e6001a 100%);
+            box-shadow: 0 16px 35px -5px rgba(255, 43, 60, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        .crimson-btn:active {
+            transform: translateY(1px) scale(0.97);
+        }
+
+        /* Card Swipe animation styles */
+        .swipe-correct-anim {
+            transform: translate(140%, -60px) rotate(25deg);
+            opacity: 0;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease-in;
+        }
+        .swipe-skip-anim {
+            transform: translate(-140%, -60px) rotate(-25deg);
+            opacity: 0;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease-in;
+        }
+        .card-reset {
+            transform: scale(0.9) translateY(40px);
+            opacity: 0;
+            transition: none;
+        }
+        .card-reset-active {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease-out;
+        }
+    </style>
+</head>
+<body class="text-white antialiased select-none">
+
+    <!-- Canvas for explosions -->
+    <canvas id="particles-canvas" class="fixed inset-0 pointer-events-none z-[999]"></canvas>
+
+    <!-- Phone mockup chassis (centers on desktop, expands on mobile) -->
+    <div class="phone-frame flex flex-col justify-between overflow-hidden relative">
+        
+        <!-- iPhone Top Notch / Dynamic Island (Desktop only style helper) -->
+        <div class="hidden sm:flex w-28 h-6.5 bg-black rounded-full absolute top-2.5 left-1/2 -translate-x-1/2 z-50 items-center justify-between px-3 border border-white/5 pointer-events-none">
+            <div class="w-1.5 h-1.5 bg-zinc-900 rounded-full"></div>
+            <div class="w-7 h-1.5 bg-zinc-900 rounded-full"></div>
+            <div class="w-1 h-1 bg-[#101030] rounded-full"></div>
+        </div>
+
+        <!-- iPhone bottom Home Bar (Desktop only style helper) -->
+        <div class="hidden sm:block w-32 h-1 bg-white/20 rounded-full absolute bottom-2 left-1/2 -translate-x-1/2 z-50 pointer-events-none"></div>
+
+        <!-- Ambient blur mesh background inside the phone viewport -->
+        <div class="absolute inset-0 -z-10 bg-black overflow-hidden">
+            <div class="absolute top-[10%] left-[-25%] w-72 h-72 bg-crimson-600/10 rounded-full filter blur-[100px] pointer-events-none animate-pulse"></div>
+            <div class="absolute bottom-[20%] right-[-25%] w-80 h-80 bg-crimson-700/10 rounded-full filter blur-[110px] pointer-events-none"></div>
+            <div class="absolute top-[40%] left-[30%] w-40 h-40 bg-white/2 rounded-full filter blur-[80px] pointer-events-none"></div>
+        </div>
+
+        <!-- ==================== SCREEN 1: SPLASH SCREEN ==================== -->
+        <div id="screen-splash" class="w-full flex-grow flex flex-col items-center justify-between p-8 relative z-10 pt-16 pb-8">
+            
+            <!-- Logo Section -->
+            <div class="w-full flex flex-col items-center text-center mt-6">
+                <!-- Outer breathing neon badge wrapper -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-crimson-500/20 rounded-[28px] blur-xl group-hover:bg-crimson-500/30 transition-all duration-500"></div>
+                    <div id="logo-badge" class="relative w-22 h-22 bg-gradient-to-tr from-crimson-600 to-crimson-500 rounded-[28px] flex items-center justify-center shadow-lg shadow-crimson-600/25 active:scale-95 transition-transform duration-300 cursor-pointer">
+                        <span class="material-symbols-outlined text-white text-4.5xl font-extralight tracking-normal">gesture</span>
+                    </div>
+                </div>
+                
+                <h1 class="text-3xl font-extrabold text-white tracking-[0.15em] uppercase mt-8 font-sans">
+                    КРОКОДИЛ <span class="text-crimson-500">18+</span>
+                </h1>
+                
+                <div class="w-6 h-[1.5px] bg-crimson-500/60 mt-3.5 mb-1.5"></div>
+                <p class="text-[8.5px] text-zinc-500 tracking-[0.38em] uppercase font-semibold">
+                    VIP ENTERTAINMENT
+                </p>
+            </div>
+
+            <!-- Central Content: File Uploader and Stats -->
+            <div class="w-full space-y-6 px-1.5">
+                
+                <!-- Premium Apple Card for word base management -->
+                <div class="w-full p-5 rounded-3xl premium-glass-card text-center space-y-4">
+                    <div class="flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-sm text-crimson-500">folder_open</span>
+                        <p class="text-[9.5px] text-zinc-400 uppercase tracking-widest font-bold">
+                            База слов (.txt)
+                        </p>
+                    </div>
+                    
+                    <div class="flex gap-2">
+                        <input type="file" id="file-uploader" accept=".txt" class="hidden" />
+                        <button 
+                            id="btn-upload"
+                            class="flex-1 glass-btn py-3.5 rounded-2xl text-[9px] uppercase tracking-widest font-extrabold hover:border-crimson-500/35"
+                        >
+                            Импортировать
+                        </button>
+                        <button 
+                            id="btn-clear-words"
+                            class="border border-crimson-700/40 text-crimson-500 px-4 py-3.5 rounded-2xl text-[9px] uppercase tracking-widest font-extrabold hover:bg-crimson-500/5 hover:border-crimson-500/50 active:scale-95 transition-all hidden"
+                        >
+                            Сбросить
+                        </button>
+                    </div>
+                    
+                    <!-- Uploader Status Badge -->
+                    <div id="upload-status" class="hidden flex items-center justify-center gap-1.5 pt-1">
+                        <div class="w-1.5 h-1.5 bg-green-500 rounded-full animate-ping"></div>
+                        <p id="upload-status-text" class="text-[8.5px] text-zinc-400 font-extrabold uppercase tracking-widest">
+                            Пользовательская база
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Primary Play Button -->
+                <button 
+                    id="btn-start"
+                    class="w-full h-15 crimson-btn rounded-2xl uppercase tracking-[0.22em] text-[11px] font-extrabold flex items-center justify-center gap-2"
+                >
+                    <span class="material-symbols-outlined text-lg">play_arrow</span>
+                    НАЧАТЬ ИГРУ
+                </button>
+            </div>
+
+            <!-- Footer founder note -->
+            <div class="text-center">
+                <p class="text-[8.5px] text-zinc-600 uppercase tracking-[0.24em] font-medium opacity-65">
+                    DESIGNED BY KIRILL CHUMAK
+                </p>
+            </div>
+        </div>
+
+        <!-- ==================== SCREEN 2: GAME SCREEN ==================== -->
+        <div id="screen-game" class="w-full flex-grow flex flex-col justify-between hidden relative z-10 pt-10 sm:pt-14 pb-6">
+            
+            <!-- Game Header -->
+            <header class="w-full flex justify-between items-center px-8 py-3">
+                <button id="btn-back" class="text-zinc-500 hover:text-white flex items-center gap-1.5 py-1 px-2.5 -ml-2.5 rounded-xl hover:bg-white/3 transition-all">
+                    <span class="material-symbols-outlined text-lg">chevron_left</span>
+                    <span class="text-[9px] font-bold tracking-widest uppercase">МЕНЮ</span>
+                </button>
+                <div id="word-counter" class="text-[9.5px] text-crimson-500 font-extrabold tracking-widest uppercase bg-crimson-950/45 border border-crimson-500/20 px-3.5 py-1.5 rounded-full backdrop-blur-md">
+                    СЛОВО 1
+                </div>
+            </header>
+
+            <!-- Card Playing Area -->
+            <main class="flex-grow flex flex-col items-center justify-center px-7 relative my-4">
+                
+                <!-- Inner Red Spotlight behind the card -->
+                <div id="card-glow" class="absolute w-56 h-56 bg-crimson-500/10 rounded-full filter blur-[60px] pointer-events-none transition-all duration-300"></div>
+
+                <!-- The Interactive Card -->
+                <div id="word-card" class="relative z-10 w-full aspect-[4/5] flex flex-col items-center justify-between premium-glass-card rounded-[36px] p-8 card-reset-active">
+                    
+                    <!-- Card Top Hint -->
+                    <div class="w-full flex flex-col items-center gap-3">
+                        <span id="card-action-title" class="text-[8.5px] uppercase text-zinc-500 tracking-[0.45em] font-bold">ОБЪЯСНИТЕ ЖЕСТАМИ</span>
+                        <div class="w-6 h-[1px] bg-zinc-800"></div>
+                    </div>
+                    
+                    <!-- Card Central Word Body -->
+                    <div class="w-full text-center py-6 flex flex-col items-center justify-center min-h-[160px]">
+                        <h1 id="word-text" class="text-white text-3.5xl sm:text-4xl font-extrabold tracking-wide leading-tight px-2 transition-all duration-200">
+                            СЛОВО
+                        </h1>
+                        <!-- Red Dot Accent -->
+                        <div id="card-dot-accent" class="w-1.5 h-1.5 bg-crimson-500 rounded-full mt-4 shadow-sm shadow-crimson-500/50"></div>
+                    </div>
+                    
+                    <!-- Card Bottom Elements -->
+                    <div class="flex justify-center items-center gap-1.5 opacity-30">
+                        <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                        <div class="w-5 h-[1.5px] bg-white rounded-full"></div>
+                        <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Action Buttons Footer -->
+            <footer class="w-full px-7 flex flex-col gap-4">
+                
+                <!-- Bottom controls grid (Dribbble 3-column pill layout) -->
+                <div class="grid grid-cols-3 gap-3">
+                    
+                    <!-- Skip button -->
+                    <button 
+                        id="btn-skip"
+                        class="h-15 flex items-center justify-center rounded-2.5xl glass-btn text-[10px] uppercase tracking-[0.2em] font-extrabold border-white/5"
+                    >
+                        ПРОПУСК
+                    </button>
+                    
+                    <!-- Hide/Show eyeball toggle -->
+                    <button 
+                        id="btn-hide"
+                        class="h-15 flex flex-col items-center justify-center rounded-2.5xl glass-btn text-[9px] uppercase tracking-[0.18em] font-extrabold"
+                    >
+                        <span id="hide-icon" class="material-symbols-outlined text-xl mb-0.5">visibility</span>
+                        <span id="hide-text">Скрыть</span>
+                    </button>
+                    
+                    <!-- Correct button -->
+                    <button 
+                        id="btn-correct"
+                        class="h-15 flex items-center justify-center rounded-2.5xl crimson-btn text-[10px] uppercase tracking-[0.2em] font-extrabold"
+                    >
+                        УГАДАНО
+                    </button>
+                </div>
+            </footer>
+        </div>
+        
+    </div>
+
+    <!-- CODE LOGIC -->
+    <script>
+        // --- System Words Database ---
+        const DEFAULT_WORDS = [
+            // Категория 1: Образы и метафоры
+            "Искра между нами", "Удар молнии", "Бабочки в животе", "Пожар страсти", 
+            "Взрыв эмоций", "Магнитное притяжение", "Тихая гавань", "Запретный плод", 
+            "Шторм в душе", "Сладкая вата", "Зона турбулентности", "Красная кнопка", 
+            "Табу", "Любовь с первого взгляда", "Химия между нами", "Термометр зашкаливает", 
+            "Стоп-кран", "Тихий омут", "Лёд и пламя", "Фейерверк внутри", "На грани", 
+            "Точка кипения", "Опасный поворот", "Скользкая тема", "Вишенка на торте", 
+            "Перчинка", "Тонкий лёд", "Удар ниже пояса", "Закрытая дверь", "Ключ от сердца", 
+            "Пазл сошёлся", "Две половинки", "Горячий кофе", "Крепкий орешек", "Таю как свеча", 
+            "Плавлюсь как шоколад", "Клубничка", "Шампанское в голову", "Пороховая бочка", 
+            "Сжатая пружина", "Оголённый нерв", "Эрогенная зона", "Сексуальное напряжение", 
+            "Голая правда", "Сочная деталь", "Сладкий грех", "Запретный приём", "Тайный сад", 
+            "Мокрая фантазия", "Влажные мечты", "Горячая штучка", "Интимный момент", 
+            "Опасная бритва", "Гремучая смесь", "Тихий стон", "Без тормозов", "Красное бельё", 
+            "Чёрная метка", "Секретный ингредиент", "Золотая середина", "Острый соус", 
+            "Томный вечер", "Сладкая пытка", "Жаркий шёпот", "Взрывная волна", "Масло и вода", 
+            "Двойное дно", "Влажная салфетка", "Обнажённый нерв", "Скользкий шанс", 
+            "Пряный аромат", "Голодный взгляд", "Ночная охота", "Утренний трофей", 
+            "Липкий след", "Танец теней", "Игра с огнём", "Бархатная кожа", "Мягкий намёк", 
+            "Твёрдое решение", "Пульсирующий ритм", "Сжатые челюсти", "Учащённое дыхание", 
+            "Покрасневшая кожа", "Томная поза", "Шёлковый шорох", "Кружевная тень", 
+            "Невидимая нить", "Трепетное ожидание", "Сладкая дрожь", "Острый каблук", 
+            "Развязанный узел", "Спутанные простыни", "Приглушённый свет", "Тёплое дыхание", 
+            "Влажные губы", "Сломанный замок", "Потерянный контроль", "Горячий песок", 
+            "Солёный поцелуй", "Ночной прилив", "Утренняя роса", "Знойный полдень", 
+            "Закатная страсть", "Рассветное томление", "Лунная дорожка", "Солнечный удар", 
+            "Магнитная буря", "Электрический разряд", "Звук разрываемой ткани", "Падающая одежда", 
+            "Сбитое дыхание", "Нервный смех", "Дрожащие пальцы", "Слепое доверие", 
+            "Запретная фантазия", "Секретный сценарий", "Ночной сеанс", "Беззвучный крик", 
+            "Внутренний жар", "Наружу", "Вскрытая карта", "Последний рубеж", "Первый шаг", 
+            "Роковая ошибка", "Сладкая месть", "Опасный партнёр", "Верный соблазн", 
+            "Случайная связь", "Необдуманный поступок", "Пьянящий аромат", "Дурманящий запах", 
+            "Одурманенный разум", "Потеря рассудка", "Животный инстинкт", "Первобытный зов", 
+            "Дикое желание", "Необузданная страсть", "Укрощённый зверь", "Ласковый хищник", 
+            "Нежное доминирование", "Игривое подчинение", "Сладкий плен", "Опасная свобода", 
+            "Взаимный голод", "Насыщение", "Послевкусие", "Тихая эйфория", 
+            "Блаженная усталость", "Сладкий сон без сновидений",
+            
+            // Категория 2: Роли и типажи
+            "Строгий учитель", "Непослушный ученик", "Смущённый доктор", "Сантехник без инструментов", 
+            "Курьер с цветами", "Стриптизёр-неудачник", "Уборщица-соблазнительница", "Сосед с биноклем", 
+            "Вампир-вегетарианец", "Робот с севшей батарейкой", "Начальник на удалёнке", 
+            "Библиотекарь-тихоня", "Актриса мыльной оперы", "Гость в карнавальной маске", 
+            "Мачо у зеркала", "Промокший под дождём", "Нео из матрицы", "Психолог с блокнотом", 
+            "Первое свидание, дрожь", "Дама с кошкой", "Человек-кошка", "Тайный поклонник", 
+            "Сосед с дрелью", "Инструктор по танго", "Казанова без памяти", "Королева драмы", 
+            "Нянька с младенцем", "Человек-невидимка", "Супергерой с плащом", "Качок в спортзале", 
+            "Снежная королева", "Пляжный спасатель", "Пожарный на шесте", "Шпион на задании", 
+            "Русалка на пляже", "Ковбой с лассо", "Султан в гареме", "Рыцарь в латах", 
+            "Ангел со съехавшим нимбом", "Чёрт с отклеившимися рогами", "Медсестра без тормозов", 
+            "Полицейский и нарушитель", "Порнозвезда на пенсии", "Секретарша в короткой юбке", 
+            "Фетишист-неудачник", "Хозяйка борделя", "Пластический хирург", "Эротический фотограф", 
+            "Массажист с маслом", "Оратор-соблазнитель", "Священник-искуситель", "Монахиня-бунтарка", 
+            "Пират с чёрной меткой", "Космонавт в невесомости", "Водолаз без акваланга", 
+            "Повар с острым ножом", "Официант с шампанским", "Бармен за стойкой", 
+            "Танцовщица на пилоне", "Стриптизёр в полиции", "Пожарный на вызове", 
+            "Врач скорой помощи", "Пациент с томным вздохом", "Заключённый и надзиратель", 
+            "Шпионка в вечернем платье", "Двойной агент", "Роковая женщина", "Мужчина-мечта", 
+            "Женщина-вамп", "Плейбой на пенсии", "Куртизанка с веером", "Гейша с чайной церемонией", 
+            "Самурай с катаной", "Гладиатор на арене", "Раб и госпожа", "Доминатрикс без хлыста", 
+            "Сабмиссив с характером", "Свингер на вечеринке", "Нудист в галстуке", 
+            "Эксгибиционист в метро", "Вуайерист в замочной скважине", "Человек-загадка", 
+            "Искуситель с шоколадом", "Искусительница с клубникой", "Донжуан с блокнотом", 
+            "Клеопатра на троне", "Казанова в инвалидном кресле", "Ромео под балконом", 
+            "Джульетта на балконе", "Отелло с платком", "Кармен с веером", "Лолита в саду", 
+            "Гумберт с очками", "Секс-инструктор", "Тренер по флирту", "Гуру пикапа", 
+            "Сваха с картотекой", "Брачный аферист", "Любовный детектив", "Частный сыщик в отеле", 
+            "Горничная в номере", "Коридорный с ключом", "Портной с сантиметром", "Сапожник с туфелькой", 
+            "Ювелир с кольцом", "Флорист с розой", "Кондитер со сливками", "Винодел с бокалом", 
+            "Дегустатор с закрытыми глазами", "Парфюмер с флаконом", "Художник с обнажённой натурой", 
+            "Скульптор с глиной", "Поэт с рифмой", "Писатель эротических романов", 
+            "Читатель под одеялом", "Зритель в первом ряду", "Критик с лорнетом", 
+            "Режиссёр интимных сцен", "Актёр без слов", "Актриса на кастинге", 
+            "Каскадёр без страховки", "Дуэлянт с перчаткой", "Соперник в любовном треугольнике", 
+            "Третий лишний", "Свидетель в шкафу", "Друг семьи", "Подруга невесты", 
+            "Шафер на свадьбе", "Молодожён в номере", "Медовый месяц втроём", "Любовник в коме", 
+            "Бывший на пороге", "Нынешний в ярости", "Будущий в мечтах", "Виртуальный партнёр", 
+            "Гость из чата", "Звёздный ловелас", "Секс-символ 90-х", "Икона стиля", 
+            "Королева вечеринки", "Принц на белом коне", "Принцесса на горошине", 
+            "Спящая красавица", "Охотник за поцелуями", "Коллекционер сердец", "Разбиватель иллюзий", 
+            "Строитель воздушных замков", "Житель пентхауса", "Бомж с букетом", "Игрок в «Крокодила» 18+"
+        ];
+
+        let activeWords = [...DEFAULT_WORDS];
+        let gameWordsQueue = [];
+        let isWordHidden = true;
+        let totalWordsSeen = 0;
+
+        // --- Custom Elegant Particle Physics ---
+        const triggerRedConfetti = (startX, startY) => {
+            const canvas = document.getElementById('particles-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const actualX = (typeof startX === 'number' && !isNaN(startX)) ? startX : window.innerWidth / 2;
+            const actualY = (typeof startY === 'number' && !isNaN(startY)) ? startY : window.innerHeight / 2;
+            
+            const particles = [];
+            // Clean palette of crimson hues, stark whites and charcoal gray
+            const colors = ['#FF2B3C', '#E30B22', '#FFFFFF', '#1E1E22', '#55020B'];
+            
+            for (let i = 0; i < 45; i++) {
+                particles.push({
+                    x: actualX,
+                    y: actualY,
+                    vx: (Math.random() - 0.5) * 16,
+                    vy: (Math.random() - 0.85) * 15 - 4,
+                    size: Math.random() * 3.5 + 1.5,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    alpha: 1,
+                    decay: Math.random() * 0.016 + 0.014,
+                    gravity: 0.28,
+                    rotation: Math.random() * Math.PI * 2,
+                    rotSpeed: (Math.random() - 0.5) * 0.25
+                });
+            }
+            
+            const animate = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                let alive = false;
+                
+                particles.forEach(p => {
+                    if (p.alpha > 0) {
+                        alive = true;
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.vy += p.gravity;
+                        p.alpha -= p.decay;
+                        p.rotation += p.rotSpeed;
+                        
+                        ctx.save();
+                        ctx.translate(p.x, p.y);
+                        ctx.rotate(p.rotation);
+                        ctx.globalAlpha = p.alpha;
+                        ctx.fillStyle = p.color;
+                        
+                        ctx.beginPath();
+                        // Draw square flakes or micro-circles alternatively
+                        if (p.size > 2.5) {
+                            ctx.rect(-p.size, -p.size, p.size * 2, p.size * 2);
+                        } else {
+                            ctx.arc(0, 0, p.size, 0, Math.PI * 2);
+                        }
+                        ctx.fill();
+                        ctx.restore();
+                    }
+                });
+                
+                if (alive) {
+                    requestAnimationFrame(animate);
+                } else {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            };
+            
+            animate();
+        };
+
+        // --- Custom TXT words parser ---
+        const parseWordsTxt = (text) => {
+            return text.split('\n')
+                .map(l => l.trim())
+                .filter(l => l.length > 0 && !lineStartsWithComment(l));
+        };
+
+        const lineStartsWithComment = (line) => {
+            return line.startsWith('#') || line.startsWith('//');
+        };
+
+        // --- Game Setup & State ---
+        const shuffle = (array) => {
+            let arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        };
+
+        const loadWords = () => {
+            const saved = localStorage.getItem('gesto_simplified_custom_words');
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        activeWords = Array.from(new Set(parsed));
+                        document.getElementById('btn-clear-words').classList.remove('hidden');
+                        document.getElementById('upload-status').classList.remove('hidden');
+                        document.getElementById('upload-status-text').innerText = `База: ${parsed.length} слов`;
+                        return;
+                    }
+                } catch (e) {
+                    console.error("Failed to load local words", e);
+                }
+            }
+            activeWords = Array.from(new Set(DEFAULT_WORDS));
+            document.getElementById('btn-clear-words').classList.add('hidden');
+            document.getElementById('upload-status').classList.add('hidden');
+        };
+
+        const initGameSession = () => {
+            gameWordsQueue = shuffle(activeWords);
+            totalWordsSeen = 1;
+            isWordHidden = true; // Always start hidden
+            updateUIWord();
+        };
+
+        const updateUIWord = () => {
+            if (gameWordsQueue.length === 0) {
+                gameWordsQueue = shuffle(activeWords);
+            }
+            const word = gameWordsQueue[0];
+            const wordTextEl = document.getElementById('word-text');
+            const counterEl = document.getElementById('word-counter');
+            const cardEl = document.getElementById('word-card');
+            const glowEl = document.getElementById('card-glow');
+            const dotEl = document.getElementById('card-dot-accent');
+            const actionTitleEl = document.getElementById('card-action-title');
+            
+            counterEl.innerText = `Слово: ${totalWordsSeen}`;
+            
+            if (isWordHidden) {
+                wordTextEl.innerText = "•••••••••";
+                wordTextEl.classList.add('text-crimson-500/25', 'tracking-widest');
+                wordTextEl.classList.remove('text-white');
+                dotEl.classList.add('opacity-10');
+                actionTitleEl.innerText = "СЛОВО СКРЫТО";
+                actionTitleEl.classList.add('text-crimson-600');
+                actionTitleEl.classList.remove('text-zinc-500');
+                
+                // Toggle card style to non-accent, heavy glass
+                cardEl.className = "relative z-10 w-full aspect-[4/5] flex flex-col items-center justify-between premium-glass-card rounded-[36px] p-8 card-reset-active";
+                glowEl.className = "absolute w-56 h-56 bg-black rounded-full filter blur-[60px] pointer-events-none transition-all duration-300";
+                
+                document.getElementById('hide-icon').innerText = 'visibility_off';
+                document.getElementById('hide-text').innerText = 'Показать';
+                document.getElementById('btn-hide').classList.add('active');
+            } else {
+                wordTextEl.innerText = word;
+                wordTextEl.classList.remove('text-crimson-500/25', 'tracking-widest');
+                wordTextEl.classList.add('text-white');
+                dotEl.classList.remove('opacity-10');
+                actionTitleEl.innerText = "ОБЪЯСНИТЕ ЖЕСТАМИ";
+                actionTitleEl.classList.remove('text-crimson-600');
+                actionTitleEl.classList.add('text-zinc-500');
+                
+                // Toggle card style to active crimson subtle glow
+                cardEl.className = "relative z-10 w-full aspect-[4/5] flex flex-col items-center justify-between premium-glass-card-accent rounded-[36px] p-8 card-reset-active";
+                glowEl.className = "absolute w-56 h-56 bg-crimson-500/10 rounded-full filter blur-[60px] pointer-events-none transition-all duration-300";
+                
+                document.getElementById('hide-icon').innerText = 'visibility';
+                document.getElementById('hide-text').innerText = 'Скрыть';
+                document.getElementById('btn-hide').classList.remove('active');
+            }
+        };
+
+        const triggerCardAnimation = (animClass) => {
+            const card = document.getElementById('word-card');
+            
+            // Apply swipe class
+            const baseClass = isWordHidden ? 'premium-glass-card' : 'premium-glass-card-accent';
+            card.className = `relative z-10 w-full aspect-[4/5] flex flex-col items-center justify-between ${baseClass} rounded-[36px] p-8 ${animClass}`;
+            
+            setTimeout(() => {
+                // Shift the queue so we don't repeat words in a single session
+                gameWordsQueue.shift();
+                if (gameWordsQueue.length === 0) {
+                    gameWordsQueue = shuffle(activeWords);
+                }
+                
+                totalWordsSeen++;
+                isWordHidden = true; // Always start next word as hidden!
+                updateUIWord();
+                
+                // Reset card coordinates instantly
+                card.className = `relative z-10 w-full aspect-[4/5] flex flex-col items-center justify-between premium-glass-card rounded-[36px] p-8 card-reset`;
+                
+                // Trigger entry transitions
+                setTimeout(() => {
+                    card.className = `relative z-10 w-full aspect-[4/5] flex flex-col items-center justify-between premium-glass-card rounded-[36px] p-8 card-reset-active`;
+                }, 40);
+            }, 350);
+        };
+
+        // --- DOM Event Listeners ---
+        document.addEventListener('DOMContentLoaded', () => {
+            loadWords();
+
+            // Logo badge clicks trigger beautiful local sparks
+            document.getElementById('logo-badge').addEventListener('click', (e) => {
+                triggerRedConfetti(e.clientX, e.clientY);
+            });
+
+            // Start Game transition
+            document.getElementById('btn-start').addEventListener('click', (e) => {
+                triggerRedConfetti(e.clientX, e.clientY);
+                initGameSession();
+                document.getElementById('screen-splash').classList.add('hidden');
+                document.getElementById('screen-game').classList.remove('hidden');
+            });
+
+            // Back to Menu screen transition
+            document.getElementById('btn-back').addEventListener('click', () => {
+                document.getElementById('screen-game').classList.add('hidden');
+                document.getElementById('screen-splash').classList.remove('hidden');
+            });
+
+            // Hide/Show text toggle
+            document.getElementById('btn-hide').addEventListener('click', () => {
+                isWordHidden = !isWordHidden;
+                updateUIWord();
+            });
+
+            // Correct word action button click
+            document.getElementById('btn-correct').addEventListener('click', (e) => {
+                triggerRedConfetti(e.clientX, e.clientY);
+                triggerCardAnimation('swipe-correct-anim');
+            });
+
+            // Skip word action button click
+            document.getElementById('btn-skip').addEventListener('click', () => {
+                triggerCardAnimation('swipe-skip-anim');
+            });
+
+            // Upload TXT logic
+            const fileInput = document.getElementById('file-uploader');
+            document.getElementById('btn-upload').addEventListener('click', () => {
+                fileInput.click();
+            });
+
+            fileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const content = event.target.result;
+                    const parsed = parseWordsTxt(content);
+                    if (parsed.length > 0) {
+                        localStorage.setItem('gesto_simplified_custom_words', JSON.stringify(parsed));
+                        triggerRedConfetti(window.innerWidth / 2, window.innerHeight / 2);
+                        loadWords();
+                    } else {
+                        alert("Файл пуст или содержит некорректные слова!");
+                    }
+                };
+                reader.readAsText(file);
+            });
+
+            // Reset words base logic
+            document.getElementById('btn-clear-words').addEventListener('click', () => {
+                localStorage.removeItem('gesto_simplified_custom_words');
+                loadWords();
+            });
+        });
+    </script>
+</body>
+</html>
